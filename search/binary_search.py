@@ -4,13 +4,13 @@ def binary_search(a=[], target=None):
   l = 0
   r = len(a) - 1
   while l < r:
-    mid = (r + l) // 2
+    mid = (r + l) // 2 
     if target == a[mid]:
       return True
     
     if target > a[mid]:
-      l = mid
+      l = mid + 1
     else:
-      r = mid
+      r = mid - 1
   
   return False
