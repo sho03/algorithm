@@ -71,6 +71,7 @@ print('shortest root is ...')
 print(dist[goal_x][goal_y])
 print('')
 
+#実際に通った最短経路を表示する
 g_x = goal_x
 g_y = goal_y
 while g_x != -1 and g_y != -1:
