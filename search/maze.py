@@ -41,6 +41,9 @@ q.append((start_x, start_y))
 dx = [1, 0, -1, 0]
 dy = [0, -1, 0, 1]
 
+prev_x = [[-1] * x for i in range(y)]
+prev_y = [[-1] * x for i in range(y)]
+
 #幅優先探索の開始
 while q:
   current_pos = q.popleft()
@@ -61,6 +64,25 @@ while q:
     if dist[next_x][next_y] == -1:
       q.append((next_x, next_y))
       dist[next_x][next_y] = dist[current_x][current_y] + 1
-      
-print(dist[goal_x][goal_y])
+      prev_x[next_x][next_y] = current_x
+      prev_y[next_x][next_y] = current_y
 
+print('shortest root is ...')      
+print(dist[goal_x][goal_y])
+print('')
+
+g_x = goal_x
+g_y = goal_y
+while g_x != -1 and g_y != -1:
+  if not field[g_x][g_y] == 'S' and not field[g_x][g_y] == 'G':
+    field[g_x][g_y] = '○'
+  px = prev_x[g_x][g_y]
+  py = prev_y[g_x][g_y]
+  g_x = px
+  g_y = py
+
+print('root')
+for i in range(x):
+  for j in range(y):
+    print(field[i][j], end=' ')
+  print('')
